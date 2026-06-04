@@ -41,8 +41,8 @@ public class LancerRaytracer {
         // Ici on calcule toute l'image (0,0) -> (largeur, hauteur)
         
         int x0 = 0, y0 = 0;
-        int l = largeur, h = hauteur;
-                
+        int l = largeur,h = hauteur;
+
         // Chronométrage du temps de calcul
         Instant debut = Instant.now();
         System.out.println("Calcul de l'image :\n - Coordonnées : "+x0+","+y0
@@ -51,10 +51,15 @@ public class LancerRaytracer {
         Instant fin = Instant.now();
 
         long duree = Duration.between(debut, fin).toMillis();
-        
+
         System.out.println("Image calculée en :"+duree+" ms");
-        
+
         // Affichage de l'image calculée
         disp.setImage(image, x0, y0);
-    }	
+
+        // Ligne à modifier ou a ajouter pour la question 3)
+//        int l = largeur/2, h = hauteur/2;
+//        Image image2 = scene.compute(x0+l, y0+h, l, h);
+//        disp.setImage(image2, x0+l, y0+h);
+    }
 }

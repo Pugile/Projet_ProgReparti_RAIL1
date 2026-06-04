@@ -2,6 +2,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import ServiceCalcule.Calcule;
+import raytracer.Image;
 
 public class ServiceCentralCalcule implements ServiceCentral{
 
@@ -9,17 +10,18 @@ public class ServiceCentralCalcule implements ServiceCentral{
     private ArrayList<ServiceCalcule> listService = new ArrayList<>();
 
     @Override
-    public void envoyerCalcule() throws RemoteException {
+    public void envoyerCalcule(int w, int h) throws RemoteException {
 
     }
 
     @Override
-    public void recevoirClacule() throws RemoteException {
+    public void recevoirCalcule(Image img) throws RemoteException {
 
     }
 
+
     @Override
-    public void diviserCalcule() throws RemoteException {
+    public void diviserCalcule(int largeur, int hauteur) throws RemoteException {
 
     }
 }

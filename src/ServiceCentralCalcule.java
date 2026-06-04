@@ -1,12 +1,12 @@
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import ServiceCalcule.ServiceCalcule;
+
 import ServiceCalcule.Calcule;
 
 public class ServiceCentralCalcule implements ServiceCentral{
 
-    private ArrayList<Calcule> lCalcule = new ArrayList<>();
-    private ArrayList<ServiceCalcule> lService = new ArrayList<>();
+    private ArrayList<Calcule> listCalcule = new ArrayList<>();
+    private ArrayList<ServiceCalcule> listService = new ArrayList<>();
 
     @Override
     public void envoyerCalcule() throws RemoteException {

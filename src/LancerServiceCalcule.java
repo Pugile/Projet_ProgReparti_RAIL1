@@ -10,7 +10,7 @@ public class LancerServiceCalcule {
         try {
             Registry reg = LocateRegistry.getRegistry(args[0], 1099);
             ServiceCentral serviceCentral = (ServiceCentral) reg.lookup("ServiceCentrale");
-            ServiceCalcule serviceCalcule = new ServiceCalculeImpl(serviceCentral);
+            ServiceCalcule serviceCalcule = new ServiceCalculeImpl();
 
             serviceCentral.enregistrerClient(serviceCalcule);
             System.out.println("service calcule bien enregistré");

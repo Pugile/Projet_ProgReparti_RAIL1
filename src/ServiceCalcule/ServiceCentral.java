@@ -1,3 +1,5 @@
+package ServiceCalcule;
+
 import raytracer.Image;
 
 import java.rmi.Remote;

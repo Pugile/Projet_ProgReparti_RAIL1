@@ -1,5 +1,7 @@
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import ServiceCalcule.ServiceCalcule;
+import ServiceCalcule.Calcule;
 
 public class ServiceCentralCalcule implements ServiceCentral{
 

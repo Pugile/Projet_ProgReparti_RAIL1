@@ -7,4 +7,3 @@ public interface ServiceCalcule extends Remote {
     Image calcule(String sceneDescription, int width, int height, int startY, int endY) throws RemoteException;
 }
 
-}

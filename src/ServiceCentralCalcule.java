@@ -1,22 +1,27 @@
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-
+import raytracer.Disp;
 import raytracer.Image;
 
 public class ServiceCentralCalcule implements ServiceCentral{
 
-    private ArrayList<Calcule> listCalcule = new ArrayList<>();
     private ArrayList<ServiceCalcule> listService = new ArrayList<>();
+    private Disp disp;
 
     @Override
-    public void envoyerCalcule(int w, int h) throws RemoteException {
+    public synchronized void envoyerCalcule(Calcule c) throws RemoteException {
+        System.out.println("Début du calcul de l'image de taille " + c.getWidth() + "x" + c.getHeight() + " !");
 
+        this.disp = new Disp("Raytracer Réparti - Serveur Central", c.getWidth(), c.getHeight());
+        diviserCalcule(c.getWidth(), c.getHeight());
     }
 
     @Override
-    public void recevoirCalcule(Image img) throws RemoteException {
+    public synchronized void envoyerImage(Image imgPartielle, int startY) throws RemoteException {
+        System.out.println("Réception d'une bande ! Affichage à partir de la ligne " + startY);
 
+        this.disp.setImage(imgPartielle, 0, startY);
     }
 
     @Override
@@ -41,10 +46,11 @@ public class ServiceCentralCalcule implements ServiceCentral{
                     ServiceCalcule noeud = listService.get(index);
 
                     System.out.println("Envoi de la bande " + startY + " à " + endY + " au nœud " + index);
-                    Image imagePartielle = noeud.calcule(new Calcule("simple.txt", largeur, hauteur, startY, endY));
+                    Calcule mission = new Calcule("simple.txt", 0, startY, largeur, hauteurA_Calculer);
 
-                    recevoirCalcule(imagePartielle);
+                    Image imagePartielle = noeud.calcule(mission);
 
+                    envoyerImage(imagePartielle, startY);
                 } catch (RemoteException e) {
                     System.out.println("Échec de communication avec le nœud " + index + " : " + e.getMessage());
                 }

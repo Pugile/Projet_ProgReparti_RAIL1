@@ -10,12 +10,13 @@ public class ServiceCalculeImpl implements ServiceCalcule{
 
     @Override
     public Image calcule(String sceneDescription, int width, int height, int startY, int endY) throws RemoteException {
-        System.out.println("Demande de calcul reçue pour les lignes " + startY + " à " + endY);
+        System.out.println("Calcul des lignes " + startY + " à " + endY);
 
-        Raytracer raytracer = new Raytracer(width, height, sceneDescription);
-        Image partialImage = raytracer.compute(startY, endY);
+        raytracer.Scene scene = new raytracer.Scene(sceneDescription, width, height);
 
-        System.out.println("Calcul de la portion terminé.");
+        int hauteurBande = endY - startY;
+        Image partialImage = scene.compute(0, startY, width, hauteurBande);
+
         return partialImage;
     }
 }

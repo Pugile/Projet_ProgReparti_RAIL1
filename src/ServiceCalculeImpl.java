@@ -1,4 +1,6 @@
 import raytracer.Image;
+import raytracer.RayTracer;
+import raytracer.Scene;
 
 import java.rmi.RemoteException;
 
@@ -9,14 +11,14 @@ public class ServiceCalculeImpl implements ServiceCalcule{
     }
 
     @Override
-    public Image calcule(String sceneDescription, int width, int height, int startY, int endY) throws RemoteException {
-        System.out.println("Calcul des lignes " + startY + " à " + endY);
+    public Image calcule(Calcule calcule) throws RemoteException {
+        System.out.println("Demande de calcul reçue pour les lignes " + calcule.getStartY() + " à " + calcule.getStartY()+calcule.getHeight());
 
-        raytracer.Scene scene = new raytracer.Scene(sceneDescription, width, height);
+        Scene scene = new Scene(calcule.getSceneDescription(), calcule.getWidth(), calcule.getHeight());
 
-        int hauteurBande = endY - startY;
-        Image partialImage = scene.compute(0, startY, width, hauteurBande);
+        Image partialImage = scene.compute(calcule.getStartX(), calcule.getStartY(), calcule.getWidth(), calcule.getHeight());
 
+        System.out.println("Calcul de la portion terminé.");
         return partialImage;
     }
 }

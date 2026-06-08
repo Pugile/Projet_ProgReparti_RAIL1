@@ -1,9 +1,9 @@
 import raytracer.Scene;
 import raytracer.Image;
 
-public class ServiceCalculImpl implements ServiceCalcul {
+public class ServiceCalculeImpl implements ServiceCalcule {
 
-    public ServiceCalculImpl() {
+    public ServiceCalculeImpl() {
         super();
     }
 

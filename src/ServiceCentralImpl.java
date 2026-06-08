@@ -1,9 +1,6 @@
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import raytracer.Disp;
-import raytracer.Image;
-
 public class ServiceCentralImpl implements ServiceCentral{
 
     private ArrayList<ServiceCalcule> listService = new ArrayList<>();
@@ -17,7 +14,7 @@ public class ServiceCentralImpl implements ServiceCentral{
 
     @Override
     public ServiceCalcule envoyerService() throws RemoteException {
-        ServiceCalcul sc = listService.get(i);
+        ServiceCalcule sc = listService.get(i);
         i++;
         if(i>=listService.size()){
             i=0;

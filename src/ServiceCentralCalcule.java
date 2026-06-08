@@ -7,7 +7,7 @@ import raytracer.Image;
 public class ServiceCentralCalcule implements ServiceCentral{
 
     private ArrayList<Calcule> listCalcule = new ArrayList<>();
-    private ArrayList<ServiceCalculeImpl> listService = new ArrayList<>();
+    private ArrayList<ServiceCalcule> listService = new ArrayList<>();
 
     @Override
     public void envoyerCalcule(int w, int h) throws RemoteException {

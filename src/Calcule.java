@@ -10,7 +10,8 @@ public class Calcule implements Serializable {
     private boolean estTermine;
     private Image resultatPartiel;
 
-    public Calcule(int startX, int startY, int largeur, int hauteur) {
+    public Calcule(String sceneDescription, int startX, int startY, int largeur, int hauteur) {
+        this.sceneDescription = sceneDescription;
         this.startX = startX;
         this.startY = startY;
         this.width = largeur;

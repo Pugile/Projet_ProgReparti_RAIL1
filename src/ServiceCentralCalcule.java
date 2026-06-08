@@ -41,7 +41,7 @@ public class ServiceCentralCalcule implements ServiceCentral{
                     ServiceCalcule noeud = listService.get(index);
 
                     System.out.println("Envoi de la bande " + startY + " à " + endY + " au nœud " + index);
-                    Image imagePartielle = noeud.calcule("simple.txt", largeur, hauteur, startY, endY);
+                    Image imagePartielle = noeud.calcule(new Calcule("simple.txt", largeur, hauteur, startY, endY));
 
                     recevoirCalcule(imagePartielle);
 

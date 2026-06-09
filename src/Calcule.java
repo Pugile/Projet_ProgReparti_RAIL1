@@ -5,19 +5,25 @@ public class Calcule implements Serializable {
 
     private String sceneDescription;
 
-    private int startX, startY, width, height;
+    private int startX, startY;
+
+    private int blockWidth, blockHeight;
+    private int totalWidth, totalHeight;
 
     private boolean estTermine;
     private Image resultatPartiel;
 
-    public Calcule(String sceneDescription, int startX, int startY, int largeur, int hauteur) {
+    public Calcule(String sceneDescription, int startX, int startY,int blockWidth, int blockHeight, int totalWidth, int totalHeight) {
         this.sceneDescription = sceneDescription;
         this.startX = startX;
         this.startY = startY;
-        this.width = largeur;
-        this.height = hauteur;
         this.estTermine = false;
         this.resultatPartiel = null;
+        this.blockWidth = blockWidth;
+        this.blockHeight = blockHeight;
+        this.totalWidth = totalWidth;
+        this.totalHeight = totalHeight;
+
     }
 
     public String getSceneDescription() {
@@ -32,13 +38,10 @@ public class Calcule implements Serializable {
         return startY;
     }
 
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
+    public int getBlockWidth() { return blockWidth; }
+    public int getBlockHeight() { return blockHeight; }
+    public int getTotalWidth() { return totalWidth; }
+    public int getTotalHeight() { return totalHeight; }
 
     public boolean isEstTermine() {
         return estTermine;

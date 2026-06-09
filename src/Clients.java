@@ -39,7 +39,7 @@ public class Clients {
 
                     System.out.println("Envoi de la bande " + startY + " à " + endY + " au nœud " + index);
                     int hauteurBandeSpe = endY - startY;
-                    Calcule c = new Calcule("simple.txt",0, startY, largeur, hauteurBandeSpe);
+                    Calcule c = new Calcule("simple.txt",0, startY, largeur, hauteurBandeSpe,largeur,hauteur);
                     Image imagePartielle = noeud.calcule(c);
 
                     SwingUtilities.invokeLater(() -> {

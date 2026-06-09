@@ -45,7 +45,11 @@ public class Clients {
                 } catch (RemoteException e) {
                     System.out.println("Échec de communication avec le nœud " + index + " : " + e.getMessage());
                     if(noeud != null) {
-                        this.serviceCentrale.updateService(noeud);
+                        try {
+                            this.serviceCentrale.updateService(noeud);
+                        } catch (RemoteException ex) {
+                            throw new RuntimeException(ex);
+                        }
                     }else{
                         System.out.println("Erreur le noeud est null");
                     }

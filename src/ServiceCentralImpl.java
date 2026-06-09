@@ -23,7 +23,7 @@ public class ServiceCentralImpl implements ServiceCentral{
     }
 
     @Override
-    public void updateService(ServiceCalcule noeud) throws RemoteException {
+    public void updateService(ServiceCalcule noeud)  {
         if(listService.contains(noeud)) listService.remove(noeud);
     }
 }

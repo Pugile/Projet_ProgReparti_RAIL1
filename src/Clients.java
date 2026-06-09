@@ -20,11 +20,11 @@ public class Clients {
         this.disp = disp;
     }
 
-    public void diviserCalcule(int largeur, int hauteur) throws RemoteException {
+    public void diviserCalcule(int nbCoupe, int largeur, int hauteur) throws RemoteException {
 
         //Découpage en bandes horizontales
-        int hauteurBande = hauteur / 100;
-        int reste = hauteur % 100;
+        int hauteurBande = hauteur / nbCoupe;
+        int reste = hauteur % nbCoupe;
 
         for (int i = 0; i < 100; i++) {
             final int index = i;
@@ -65,10 +65,10 @@ public class Clients {
 
 public static void main(String[] args) {
     try {
-        if (args.length != 2) {
-            System.out.println("Usage: java Clients <ip> <port>");
+        if (args.length != 3) {
+            System.out.println("Usage: java Clients <nbCoupe> <ip> <port>");
         }
-        Registry reg = LocateRegistry.getRegistry(args[0], Integer.parseInt(args[1]));
+        Registry reg = LocateRegistry.getRegistry(args[1], Integer.parseInt(args[2]));
         ServiceCentral sc = (ServiceCentral) reg.lookup("ServiceCentral");
         Scanner scan = new Scanner(System.in);
 
@@ -77,7 +77,7 @@ public static void main(String[] args) {
         System.out.println("Entrez la hauteur : ");
         int hauteur = Integer.parseInt(scan.nextLine());
         Clients c = new Clients(sc,new Disp("raytracing",largeur,hauteur));
-        c.diviserCalcule(largeur,hauteur);
+        c.diviserCalcule(Integer.parseInt(args[0]),largeur,hauteur);
     }
     catch (RemoteException e) {
         e.printStackTrace();

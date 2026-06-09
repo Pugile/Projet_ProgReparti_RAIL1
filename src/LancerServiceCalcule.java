@@ -11,10 +11,10 @@ public class LancerServiceCalcule {
 
             ServiceCalcule s = (ServiceCalcule) UnicastRemoteObject.exportObject(serviceCalcule, 0);
 
-            Registry registry = LocateRegistry.createRegistry(1100);
+            Registry registry = LocateRegistry.createRegistry(Integer.parseInt(args[0]));
             registry.rebind("ServiceCalcule", s);
 
-            Registry reg = LocateRegistry.getRegistry(args[0], Integer.parseInt(args[1]));
+            Registry reg = LocateRegistry.getRegistry(args[1], Integer.parseInt(args[2]));
             ServiceCentral sc = (ServiceCentral) reg.lookup("ServiceCentral");
 
             sc.enregistrerClient(s);

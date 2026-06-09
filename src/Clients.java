@@ -2,6 +2,7 @@ import raytracer.Image;
 import raytracer.Disp;
 import raytracer.Scene;
 
+import javax.swing.*;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -37,10 +38,13 @@ public class Clients {
                     noeud = this.serviceCentrale.envoyerService();
 
                     System.out.println("Envoi de la bande " + startY + " à " + endY + " au nœud " + index);
-                    Calcule c = new Calcule("simple.txt", startY, endY, largeur, hauteur);
+                    int hauteurBandeSpe = endY - startY;
+                    Calcule c = new Calcule("simple.txt",0, startY, largeur, hauteurBandeSpe);
                     Image imagePartielle = noeud.calcule(c);
 
-                    this.disp.setImage(imagePartielle,c.getStartX(),c.getStartY());
+                    SwingUtilities.invokeLater(() -> {
+                        this.disp.setImage(imagePartielle, c.getStartX(), c.getStartY());
+                    });
 
                 } catch (RemoteException e) {
                     System.out.println("Échec de communication avec le nœud " + index + " : " + e.getMessage());
@@ -73,8 +77,6 @@ public static void main(String[] args) {
         System.out.println("Entrez la hauteur : ");
         int hauteur = Integer.parseInt(scan.nextLine());
         Clients c = new Clients(sc,new Disp("raytracing",largeur,hauteur));
-        String fichier_description="simple.txt";
-        Scene scene = new Scene(fichier_description, largeur, hauteur);
         c.diviserCalcule(largeur,hauteur);
     }
     catch (RemoteException e) {

@@ -11,7 +11,7 @@ public class LancerServiceCalcule {
 
             ServiceCalcule s = (ServiceCalcule) UnicastRemoteObject.exportObject(serviceCalcule, 0);
 
-            Registry registry = LocateRegistry.createRegistry(1099);
+            Registry registry = LocateRegistry.createRegistry(1100);
             registry.rebind("ServiceCalcule", s);
 
             Registry reg = LocateRegistry.getRegistry(args[0], Integer.parseInt(args[1]));

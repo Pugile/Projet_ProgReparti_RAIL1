@@ -13,17 +13,27 @@ public class ServiceCentralImpl implements ServiceCentral{
     }
 
     @Override
-    public ServiceCalcule envoyerService() throws RemoteException {
-        ServiceCalcule sc = listService.get(i);
-        i++;
+    public synchronized ServiceCalcule envoyerService() throws RemoteException {
+        if (listService.isEmpty()) {
+            throw new RemoteException("Aucun nœud de calcul disponible pour le moment.");
+        }
         if(i>=listService.size()){
             i=0;
+        }
+        ServiceCalcule sc = listService.get(i);
+        i++;
+        if(i >= listService.size()){
+            i = 0;
         }
         return sc;
     }
 
     @Override
-    public void updateService(ServiceCalcule noeud) throws RemoteException  {
-        if(listService.contains(noeud)) listService.remove(noeud);
+    public synchronized void updateService(ServiceCalcule noeud) throws RemoteException  {
+        if(listService.contains(noeud)){
+            listService.remove(noeud);
+            System.out.println("Le noeud est bien déconnecter ! (Total : " + listService.size() + ")");
+        }
+
     }
 }

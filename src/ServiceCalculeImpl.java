@@ -8,7 +8,7 @@ public class ServiceCalculeImpl implements ServiceCalcule {
     }
 
     @Override
-    public Image calcule(Calcule calcule) {
+    public synchronized Image calcule(Calcule calcule) {
         System.out.println("Demande de calcul reçue pour les lignes " + calcule.getStartY() + " à " + calcule.getStartY()+calcule.getBlockHeight());
 
         Scene scene = new Scene(calcule.getSceneDescription(), calcule.getTotalWidth(), calcule.getTotalHeight());

@@ -1,7 +1,3 @@
-Voici une proposition de contenu pour votre fichier `README.md`, basée sur le compte rendu fourni :
-
-
-
 \# Projet de Programmation Répartie : Calcul Parallèle \& Ray Tracing
 
 
